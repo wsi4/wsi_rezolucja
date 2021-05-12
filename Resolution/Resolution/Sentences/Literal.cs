@@ -1,9 +1,4 @@
 ﻿using Resolution.Visitors;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Resolution.Sentences
 {
@@ -19,6 +14,28 @@ namespace Resolution.Sentences
         public override void Accept(AbstractVisitor visitor)
         {
             visitor.Visit(this);
+        }
+
+        public override object Clone()
+        {
+            Literal literal = new(Symbol);
+            
+            if (literal.Negated != Negated)
+            {
+                literal.Negate();
+            }
+
+            return literal;
+        }
+
+        public override bool Equals(Sentence other)
+        {
+            if (other is not Literal x)
+            {
+                return false;
+            }
+
+            return x.Symbol == Symbol && x.Negated == Negated;
         }
     }
 }
