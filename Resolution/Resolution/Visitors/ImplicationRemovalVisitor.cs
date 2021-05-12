@@ -1,18 +1,32 @@
 ﻿using Resolution.Sentences;
-using System;
 
 namespace Resolution.Visitors
 {
-    class ImplicationRemovalVisitor : AbstractVisitor
+    public class ImplicationRemovalVisitor : AbstractVisitor
     {
         public override void Visit(Literal literal)
         {
-            throw new NotImplementedException();
+            return;
         }
 
         public override void Visit(ComplexSentence complex)
         {
-            throw new NotImplementedException();
+            foreach (var sentence in complex.Sentences)
+            {
+                Visit(sentence);
+            }
+
+            if (complex.Connective != Connective.IMPLICATION)
+            {
+                return;
+            }
+
+            complex.Connective = Connective.OR;
+
+            for (int i = 0; i < complex.Sentences.Length - 1; i++)
+            {
+                complex.Sentences[i].Negate();
+            }
         }
     }
 }
