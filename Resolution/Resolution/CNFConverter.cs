@@ -11,11 +11,9 @@ namespace Resolution
         public List<Clause> ConvertToCNF(Sentence sentence)
         {
             var removeImpl = new ImplicationRemovalVisitor();
-            var moveNegation = new MoveNegationInwardsVisitor();
             var conjunctionExcl = new ConjunctionRemovalVisitor();
 
             removeImpl.Visit(sentence);
-            moveNegation.Visit(sentence);
             conjunctionExcl.Visit(sentence);
 
             return ConvertSentenceToClauses(sentence);
