@@ -15,8 +15,10 @@ namespace Resolution.Visitors
     {
         public ConjunctionExclusionState State { private get; set; }
 
+        // this method is only called by the client;
         public override void Visit(Sentence sentence)
         {
+            // ensure that before parsing new sentence the state is 'child'
             State = new ChildConjunctionExclusionState(this);
             base.Visit(sentence);
         }
@@ -36,6 +38,8 @@ namespace Resolution.Visitors
             State.ParseComplexSentence(complex);
         }
 
+        // this method is used to perform recursive visiting,
+        // so that the `Visit` method can reset state every time client wants to parse new sentence
         private void VisitInternal(Sentence sentence)
         {
             base.Visit(sentence);

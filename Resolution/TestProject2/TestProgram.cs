@@ -3,7 +3,7 @@ using Resolution.Sentences;
 using Resolution.Visitors;
 using Resolution.Visitors.ConjunctionExclusion;
 
-namespace TestProject2
+namespace TestProject
 {
     public class TestProgram
     {
