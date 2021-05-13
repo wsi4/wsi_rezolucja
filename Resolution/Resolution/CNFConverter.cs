@@ -11,7 +11,7 @@ namespace Resolution
         public List<Clause> ConvertToCNF(Sentence sentence)
         {
             var removeImpl = new ImplicationRemovalVisitor();
-            var conjunctionExcl = new ConjunctionRemovalVisitor();
+            var conjunctionExcl = new ConjunctionExclusionVisitor();
 
             removeImpl.Visit(sentence);
             conjunctionExcl.Visit(sentence);

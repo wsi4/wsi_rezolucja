@@ -1,5 +1,5 @@
 ﻿using Resolution.Sentences;
-using Resolution.Visitors.ConjunctionExFSM;
+using Resolution.Visitors.ConjunctionExclusion;
 
 namespace Resolution.Visitors
 {
@@ -11,13 +11,14 @@ namespace Resolution.Visitors
     // Therefore, this class is implemented as a state machine with two states:
     // 1) expecting 'root' sentence
     // 2) expecting 'child' sentence
-    class ConjunctionRemovalVisitor : AbstractVisitor, IConjunctionExclusionFSM
+    public class ConjunctionExclusionVisitor : AbstractVisitor, IConjunctionExclusionFSM
     {
-        public IConjunctionExclusionState State { private get; set; }
+        public ConjunctionExclusionState State { private get; set; }
 
-        public ConjunctionRemovalVisitor()
+        public override void Visit(Sentence sentence)
         {
-            State = new RootConjunctionExclusionState(this);
+            State = new ChildConjunctionExclusionState(this);
+            base.Visit(sentence);
         }
 
         public override void Visit(Literal literal)
@@ -29,10 +30,15 @@ namespace Resolution.Visitors
         {
             foreach (var subSentence in complex.Sentences)
             {
-                Visit(subSentence);
+                VisitInternal(subSentence);
             }
 
             State.ParseComplexSentence(complex);
+        }
+
+        private void VisitInternal(Sentence sentence)
+        {
+            base.Visit(sentence);
         }
     }
 }
