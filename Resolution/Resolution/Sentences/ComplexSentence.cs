@@ -10,7 +10,7 @@ namespace Resolution.Sentences
             Sentences = sentences.Clone() as Sentence[];
             Connective = connective;
         }
-        public Sentence[] Sentences { get; }
+        public Sentence[] Sentences { get; set; }
         public Connective Connective { get; set; }
         public override void Accept(AbstractVisitor visitor)
         {
