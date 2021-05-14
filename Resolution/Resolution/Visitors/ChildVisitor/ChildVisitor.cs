@@ -22,7 +22,7 @@ namespace Resolution.Visitors
             {
                 List<Sentence> connectedList = new(Parent.Sentences);
                 connectedList.AddRange(complex.Sentences);
-                connectedList.RemoveAll(s => s.Equals(complex));
+                connectedList.Remove(complex);
                 Parent.Sentences = connectedList.ToArray();
             }
         }

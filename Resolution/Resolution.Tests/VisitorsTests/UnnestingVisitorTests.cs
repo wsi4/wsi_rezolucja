@@ -193,5 +193,21 @@ namespace Resolution.Tests.VisitorsTests
 
             Assert.AreEqual(c5, expected);
         }
+
+        [TestMethod]
+        public void UnnestingComplexSameSubsentances()
+        {
+            Literal a = new("a"), b = new("b");
+            ComplexSentence c1 = new(Connective.AND, a, b);
+            ComplexSentence c1Clone = c1.Clone() as ComplexSentence;
+            ComplexSentence c2 = new(Connective.AND, c1, c1Clone);
+
+            ComplexSentence expected = new(Connective.AND, a,b,a,b);
+
+            UnnestingVisitor visitor = new();
+            visitor.Visit(c2);
+
+            Assert.AreEqual(c2, expected);
+        }
     }
 }
