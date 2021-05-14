@@ -16,7 +16,6 @@ namespace Resolution.Visitors
                 Visit(sentence);
             }
 
-            // Only AND and OR connetives can be unnested
             if (complex.Connective == Connective.IMPLICATION)
             {
                 return;
