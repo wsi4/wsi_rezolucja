@@ -12,7 +12,7 @@ namespace Resolution.Sentences
             Connective = connective;
         }
 
-        public Sentence[] Sentences { get; set; } // temporarily added setter
+        public Sentence[] Sentences { get; set; }
         public Connective Connective { get; set; }
 
         public override void Accept(AbstractVisitor visitor)
