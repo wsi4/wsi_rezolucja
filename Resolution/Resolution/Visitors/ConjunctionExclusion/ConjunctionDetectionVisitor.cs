@@ -2,7 +2,7 @@
 
 namespace Resolution.Visitors.ConjunctionExclusion
 {
-    public class ConjunctionDetecionVisitor : AbstractVisitor
+    public class ConjunctionDetectionVisitor : AbstractVisitor
     {
         private bool conjunctionDetected = false;
         private bool isRootSentence;
