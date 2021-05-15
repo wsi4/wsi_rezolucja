@@ -1,7 +1,6 @@
 ﻿using Resolution.Sentences;
-using Resolution.Visitors.ConjunctionExclusion;
 
-namespace Resolution.Visitors
+namespace Resolution.Visitors.ConjunctionExclusion
 {
     // Sentences that need changing here are of type `s = (p AND q) OR r`,
     // any other form means that the sentence does not require any more processing or is invalid.
@@ -11,11 +10,8 @@ namespace Resolution.Visitors
     // Therefore, this class is implemented as a state machine with two states:
     // 1) expecting 'root' sentence
     // 2) expecting 'child' sentence
-    public class ConjunctionExclusionVisitor : AbstractVisitor, IConjunctionExclusionFSM
+    public class InternalConjunctionExclusionVisitor : AbstractVisitor, IConjunctionExclusionFSM
     {
-        private readonly ConjunctionDetectionVisitor conjunctionDetector = new ConjunctionDetectionVisitor();
-        private readonly UnnestingVisitor unnestingVisitor = new UnnestingVisitor();
-
         public ConjunctionExclusionState State { private get; set; }
 
         // this method is only called by the client;
@@ -23,12 +19,7 @@ namespace Resolution.Visitors
         {
             // ensure that before parsing new sentence the state is 'child'
             State = new ChildConjunctionExclusionState(this);
-
-            while (conjunctionDetector.DetectConjunction(sentence))
-            {
-                base.Visit(sentence);
-                unnestingVisitor.Visit(sentence);
-            }
+            base.Visit(sentence);
         }
 
         public override void Visit(Literal literal)

@@ -10,7 +10,7 @@ namespace Resolution.Tests.VisitorsTests
         [TestMethod]
         public void DetectConcjunction_ReturnsTrue_WhenNestedConjunction()
         {
-            var visitor = new ConjunctionDetecionVisitor();
+            var visitor = new ConjunctionDetectionVisitor();
             var sentence = new ComplexSentence(
                 Connective.OR,
                 new ComplexSentence(

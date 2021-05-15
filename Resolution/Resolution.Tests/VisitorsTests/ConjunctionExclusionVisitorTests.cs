@@ -24,13 +24,13 @@ namespace Resolution.Tests.VisitorsTests
             Console.WriteLine(sentence);
 
             var visitor = new ConjunctionExclusionVisitor();
-            var conjunctionDetector = new ConjunctionDetecionVisitor();
+            var conjunctionDetector = new ConjunctionDetectionVisitor();
 
-            while (conjunctionDetector.DetectConjunction(sentence))
-            {
-                visitor.Visit(sentence);
-                Console.WriteLine(sentence);
-            }
+            // while (conjunctionDetector.DetectConjunction(sentence))
+            // {
+            visitor.Visit(sentence);
+            Console.WriteLine(sentence);
+            // }
         }
 
         [TestMethod]
@@ -48,13 +48,13 @@ namespace Resolution.Tests.VisitorsTests
             Console.WriteLine(sentence);
 
             var visitor = new ConjunctionExclusionVisitor();
-            var conjunctionDetector = new ConjunctionDetecionVisitor();
+            var conjunctionDetector = new ConjunctionDetectionVisitor();
 
-            while (conjunctionDetector.DetectConjunction( sentence ))
-            {
-                visitor.Visit( sentence );
-                Console.WriteLine( sentence );
-            }
+            // while (conjunctionDetector.DetectConjunction( sentence ))
+            // {
+            visitor.Visit(sentence);
+            Console.WriteLine(sentence);
+            // }
         }
 
         [TestMethod]
@@ -73,13 +73,13 @@ namespace Resolution.Tests.VisitorsTests
             Console.WriteLine(sentence);
 
             var visitor = new ConjunctionExclusionVisitor();
-            var conjunctionDetector = new ConjunctionDetecionVisitor();
+            var conjunctionDetector = new ConjunctionDetectionVisitor();
 
-            while (conjunctionDetector.DetectConjunction( sentence ))
-            {
-                visitor.Visit( sentence );
-                Console.WriteLine( sentence );
-            }
+            // while (conjunctionDetector.DetectConjunction( sentence ))
+            // {
+            visitor.Visit(sentence);
+            Console.WriteLine(sentence);
+            // }
         }
 
         [TestMethod]
@@ -101,13 +101,13 @@ namespace Resolution.Tests.VisitorsTests
             Console.WriteLine(sentence);
 
             var visitor = new ConjunctionExclusionVisitor();
-            var conjunctionDetector = new ConjunctionDetecionVisitor();
+            var conjunctionDetector = new ConjunctionDetectionVisitor();
 
-            while (conjunctionDetector.DetectConjunction( sentence ))
-            {
-                visitor.Visit( sentence );
-                Console.WriteLine( sentence );
-            }
+            // while (conjunctionDetector.DetectConjunction( sentence ))
+            // {
+            visitor.Visit(sentence);
+            Console.WriteLine(sentence);
+            // }
         }
     }
 }
