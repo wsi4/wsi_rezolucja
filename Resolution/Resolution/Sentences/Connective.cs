@@ -34,5 +34,10 @@ namespace Resolution.Sentences
         {
             return Equals(obj as Connective);
         }
+
+        public override string ToString()
+        {
+            return Symbol;
+        }
     }
 }
