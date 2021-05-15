@@ -13,7 +13,7 @@ namespace Resolution.Sentences
 
         public override void Accept(AbstractVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitLiteral(this);
         }
 
         public override object Clone()

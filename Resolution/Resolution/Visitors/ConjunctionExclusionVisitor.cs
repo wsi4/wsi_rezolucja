@@ -31,12 +31,12 @@ namespace Resolution.Visitors
             }
         }
 
-        public override void Visit(Literal literal)
+        public override void VisitLiteral(Literal literal)
         {
             State.ParseLiteral(literal);
         }
 
-        public override void Visit(ComplexSentence complex)
+        public override void VisitComplex(ComplexSentence complex)
         {
             foreach (var subSentence in complex.Sentences)
             {
@@ -47,7 +47,7 @@ namespace Resolution.Visitors
         }
 
         // this method is used to perform recursive visiting,
-        // so that the `Visit` method can reset state every time client wants to parse new sentence
+        // so that the `VisitLiteral` method can reset state every time client wants to parse new sentence
         private void VisitInternal(Sentence sentence)
         {
             base.Visit(sentence);

@@ -18,11 +18,11 @@ namespace Testing
             // Console.WriteLine(sentence);
 
             // var visitor = new UnnestingVisitor();
-            // visitor.Visit(sentence);
+            // visitor.VisitLiteral(sentence);
 
             // Console.WriteLine(sentence);
 
-            Sentence sentence = new ComplexSentence(
+            var sentence = new ComplexSentence(
                 Connective.OR,
                 new ComplexSentence(
                     Connective.AND, new Literal("p"), new Literal("q"), new Literal("r")
@@ -34,17 +34,9 @@ namespace Testing
 
             Console.WriteLine(sentence);
 
-            var conjunctionExclusionVisitor = new ConjunctionExclusionVisitor();
-            var conjunctionDetector = new ConjunctionDetectionVisitor();
-            var unnsestingVisitor = new UnnestingVisitor();
-
-            while (conjunctionDetector.DetectConjunction(sentence))
-            {
-                conjunctionExclusionVisitor.Visit(sentence);
-                Console.WriteLine(sentence);
-                unnsestingVisitor.Visit(sentence);
-                Console.WriteLine(sentence);
-            }
+            var visitor = new ConjunctionExclusionVisitor();
+            visitor.VisitComplex(sentence);
+            Console.WriteLine(sentence);
         }
     }
 }

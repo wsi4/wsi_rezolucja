@@ -15,7 +15,7 @@ namespace Resolution.Sentences
         public Connective Connective { get; set; }
         public override void Accept(AbstractVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitComplex(this);
         }
 
         public override object Clone()

@@ -15,9 +15,9 @@ namespace Resolution.Visitors.ConjunctionExclusion
             return conjunctionDetected;
         }
 
-        public override void Visit(Literal literal) {}
+        public override void VisitLiteral(Literal literal) {}
 
-        public override void Visit(ComplexSentence complex)
+        public override void VisitComplex(ComplexSentence complex)
         {
             // allow conjunction in root level sentence, cause we want conjnunction of clauses
             if (!isRootSentence && complex.Connective == Connective.AND)

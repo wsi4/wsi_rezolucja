@@ -9,7 +9,7 @@ namespace Resolution.Visitors
             sentence.Accept(this);
         }
 
-        public abstract void Visit(Literal literal);
-        public abstract void Visit(ComplexSentence complex);
+        public abstract void VisitLiteral(Literal literal);
+        public abstract void VisitComplex(ComplexSentence complex);
     }
 }
