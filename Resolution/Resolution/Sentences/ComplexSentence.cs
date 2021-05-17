@@ -1,5 +1,6 @@
 ﻿using Resolution.Visitors;
 using System.Collections.Generic;
+using System.Text;
 
 namespace Resolution.Sentences
 {
@@ -14,7 +15,7 @@ namespace Resolution.Sentences
         public Connective Connective { get; set; }
         public override void Accept(AbstractVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitComplex(this);
         }
 
         public override object Clone()
@@ -47,6 +48,20 @@ namespace Resolution.Sentences
 
                 return Negated == x.Negated;
             }
+        }
+
+        public override string ToString()
+        {
+            if (Sentences.Length == 0)
+                return "";
+
+            var strBuilder = new StringBuilder( Sentences[0].ToString() );
+            for (int i = 1; i < Sentences.Length; i++)
+            {
+                strBuilder.Append( $" {Connective} {Sentences[i]}" );
+            }
+
+            return $"{(Negated ? "~" : "")}({strBuilder})";
         }
     }
 }

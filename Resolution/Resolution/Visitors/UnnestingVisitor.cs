@@ -4,12 +4,12 @@ namespace Resolution.Visitors
 {
     public class UnnestingVisitor : AbstractVisitor
     {
-        public override void Visit(Literal literal)
+        public override void VisitLiteral(Literal literal)
         {
             return;
         }
 
-        public override void Visit(ComplexSentence complex)
+        public override void VisitComplex(ComplexSentence complex)
         {
             foreach (var sentence in complex.Sentences)
             {

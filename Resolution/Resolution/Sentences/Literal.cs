@@ -13,13 +13,13 @@ namespace Resolution.Sentences
 
         public override void Accept(AbstractVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitLiteral(this);
         }
 
         public override object Clone()
         {
             Literal literal = new(Symbol);
-            
+
             if (literal.Negated != Negated)
             {
                 literal.Negate();
@@ -36,6 +36,11 @@ namespace Resolution.Sentences
             }
 
             return x.Symbol == Symbol && x.Negated == Negated;
+        }
+
+        public override string ToString()
+        {
+            return $"{(Negated ? "~" : "")}{Symbol}";
         }
     }
 }
