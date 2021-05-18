@@ -6,18 +6,18 @@ namespace Resolution.Visitors.ClauseMaker
 {
     public class LiteralLevelClauseMakerState : ClauseMakerState
     {
-        private readonly ClauseCollectionBuilder clauseCollectionBuilder;
         private readonly ClauseMakerState parentState;
+
+        // a number of literals to process, after which a parent state of fsm should be restored
         private readonly int literalCount;
         private int processedLiterals = 0;
 
         public LiteralLevelClauseMakerState(IClauseMakerFSM fsm, ClauseMakerState parentState,
             ClauseCollectionBuilder clauseCollectionBuilder, int literalCount)
-            : base(fsm)
+            : base(fsm, clauseCollectionBuilder)
         {
             this.parentState = parentState;
             this.literalCount = literalCount;
-            this.clauseCollectionBuilder = clauseCollectionBuilder;
         }
 
         public override void ProcessComplexSentence(ComplexSentence sentence)

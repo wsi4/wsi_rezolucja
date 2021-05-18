@@ -8,12 +8,14 @@ namespace Resolution.Clauses
         private readonly List<Clause> clauses = new List<Clause>();
         private readonly List<Literal> currentClauseLiterals = new List<Literal>();
 
+        // add literal to a clause that is currently being constructed
         public ClauseCollectionBuilder AddLiteral(Literal literal)
         {
             currentClauseLiterals.Add(literal);
             return this;
         }
 
+        // build a clause from collected literals
         public ClauseCollectionBuilder EndClause()
         {
             clauses.Add(new Clause(currentClauseLiterals));
