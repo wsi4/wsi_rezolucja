@@ -1,5 +1,6 @@
 ﻿using Resolution.Visitors;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Resolution.Sentences
@@ -20,7 +21,19 @@ namespace Resolution.Sentences
 
         public override object Clone()
         {
-            return new ComplexSentence(Connective, Sentences);
+            var clonedSectences = new Sentence[Sentences.Length];
+            for (int i = 0; i < Sentences.Length; i++)
+            {
+                clonedSectences[i] = Sentences[i].Clone() as Sentence;
+            }
+            var ret = new ComplexSentence(Connective, clonedSectences);
+
+            if (ret.Negated != Negated)
+            {
+                ret.Negate();
+            }
+
+            return ret;
         }
 
         public override bool Equals(Sentence other)
