@@ -9,21 +9,21 @@ namespace Resolution.Clauses
         private readonly List<Literal> currentClauseLiterals = new List<Literal>();
 
         // add literal to a clause that is currently being constructed
-        public ClauseCollectionBuilder AddLiteral(Literal literal)
+        public virtual ClauseCollectionBuilder AddLiteral(Literal literal)
         {
             currentClauseLiterals.Add(literal);
             return this;
         }
 
         // build a clause from collected literals
-        public ClauseCollectionBuilder EndClause()
+        public virtual ClauseCollectionBuilder EndClause()
         {
             clauses.Add(new Clause(currentClauseLiterals));
             currentClauseLiterals.Clear();
             return this;
         }
 
-        public ClauseCollectionBuilder AddClause(Clause clause)
+        public virtual ClauseCollectionBuilder AddClause(Clause clause)
         {
             if (currentClauseLiterals.Count > 0)
                 EndClause();
@@ -32,14 +32,14 @@ namespace Resolution.Clauses
             return this;
         }
 
-        public List<Clause> Build()
+        public virtual List<Clause> Build()
         {
             if (currentClauseLiterals.Count > 0)
                 clauses.Add(new Clause(currentClauseLiterals));
             return new List<Clause>(clauses);
         }
 
-        public void Clear()
+        public virtual void Clear()
         {
             clauses.Clear();
             currentClauseLiterals.Clear();

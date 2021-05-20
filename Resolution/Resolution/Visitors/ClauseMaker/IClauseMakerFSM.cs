@@ -2,6 +2,6 @@
 {
     public interface IClauseMakerFSM
     {
-        ClauseMakerState State { set; }
+        ClauseMakerState State { get; set; }
     }
 }

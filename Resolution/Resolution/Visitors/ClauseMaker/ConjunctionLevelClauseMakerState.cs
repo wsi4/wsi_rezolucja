@@ -7,7 +7,9 @@ namespace Resolution.Visitors.ClauseMaker
     public class ConjunctionLevelClauseMakerState : ClauseMakerState
     {
         public ConjunctionLevelClauseMakerState(IClauseMakerFSM fsm, ClauseCollectionBuilder clauseCollectionBuilder)
-            : base(fsm, clauseCollectionBuilder) {}
+            : base(fsm, clauseCollectionBuilder)
+        {
+        }
 
         public override void ProcessComplexSentence(ComplexSentence sentence)
         {
@@ -27,7 +29,7 @@ namespace Resolution.Visitors.ClauseMaker
 
         public override void ProcessLiteral(Literal literal)
         {
-            throw new ArgumentException("Invalid sentence: expected conjunction");
+            clauseCollectionBuilder.AddClause(new Clause(new[] {literal}));
         }
     }
 }

@@ -14,7 +14,7 @@ namespace Resolution.Visitors
         // this object is shared between all states, so that they build common clause collection
         private readonly ClauseCollectionBuilder clauseCollectionBuilder = new ClauseCollectionBuilder();
 
-        public ClauseMakerState State { private get; set; }
+        public ClauseMakerState State { get; set; }
 
         // this method is supposed to be used by a client in order to parse sentence to a list of clauses
         public List<Clause> CreateClauses(Sentence sentence)
