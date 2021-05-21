@@ -11,18 +11,22 @@ namespace Resolution.Tests.VisitorsTests.ClauseMaker
     public class ConjunctionLevelClauseMakerStateTests
     {
         [TestMethod]
-        public void ProcessLiteral_AddsLiteralToClauseCollectionBuilder()
+        public void ProcessLiteral_AddsLiteralAsClauseToClauseCollectionBuilder()
         {
             var clauseMakerFsm = Mock.Of<IClauseMakerFSM>();
             var clauseCollectionBuilderMock = new Mock<ClauseCollectionBuilder>();
-            clauseCollectionBuilderMock.Setup(mock => mock.AddLiteral(It.IsAny<Literal>()));
+            clauseCollectionBuilderMock.Setup(mock => mock.AddClause(It.IsAny<Clause>()));
 
             var literal = new Literal("p");
             var testedState = new ConjunctionLevelClauseMakerState(clauseMakerFsm, clauseCollectionBuilderMock.Object);
 
             testedState.ProcessLiteral(literal);
             clauseCollectionBuilderMock.Verify(
-                mock => mock.AddLiteral(It.Is<Literal>(l => l.Equals(literal))),
+                mock => mock.AddClause(It.Is<Clause>(c =>
+                    c.PositiveLiterals.Count == 1 &&
+                    c.NegativeLiterals.Count == 0 &&
+                    c.PositiveLiterals[0].Equals(literal)
+                )),
                 Times.Once
             );
         }
@@ -53,15 +57,16 @@ namespace Resolution.Tests.VisitorsTests.ClauseMaker
         }
 
         [TestMethod]
-        public void ProcessLiteral_UsesClauseLevelState_WhenSentenceIsAlternative()
+        public void ProcessComplexSentence_SetsFsmStateToLiteralLevel_WhenSentenceIsAlternative()
         {
-            // var clauseMakerFsm = Mock.Of<IClauseMakerFSM>();
-            // var clauseCollectionBuilder = new ClauseCollectionBuilder();
+            var clauseMakerFsm = Mock.Of<IClauseMakerFSM>();
+            var clauseCollectionBuilder = new ClauseCollectionBuilder();
 
-            // var literal = new Literal("test");
-            // var testedState = new ConjunctionLevelClauseMakerState(clauseMakerFsm, clauseCollectionBuilder);
+            var complexSentence = new ComplexSentence(Connective.OR, new Literal("p"), new Literal("q"));
+            var testedState = new ConjunctionLevelClauseMakerState(clauseMakerFsm, clauseCollectionBuilder);
 
-            // Assert.ThrowsException<ArgumentException>(() => testedState.ProcessLiteral(literal));
+            testedState.ProcessComplexSentence(complexSentence);
+            Assert.IsInstanceOfType(clauseMakerFsm.State, typeof(LiteralLevelClauseMakerState));
         }
     }
 }

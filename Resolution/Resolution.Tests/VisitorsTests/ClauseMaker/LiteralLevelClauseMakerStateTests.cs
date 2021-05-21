@@ -26,16 +26,23 @@ namespace Resolution.Tests.VisitorsTests.ClauseMaker
         [TestMethod]
         public void ProcessLiteral_AddsLiteralToClauseCollectionBuilder()
         {
-            // var clauseMakerFsm = Mock.Of<IClauseMakerFSM>();
-            // var clauseCollectionBuilder = new Mock<ClauseCollectionBuilder>();
-            // var parentState = new Mock<ClauseMakerState>(clauseMakerFsm, clauseCollectionBuilder).Object;
-            //
-            // var literal = new Literal("test");
-            // var testedState = new LiteralLevelClauseMakerState(
-            //     clauseMakerFsm, parentState, clauseCollectionBuilder.Object, 1
-            // );
-            //
-            // clauseCollectionBuilder.Verify(builder => builder.AddLiteral(Moq.Match<Literal>(literal)), Times.Once);
+            var clauseCollectionBuilderMock = new Mock<ClauseCollectionBuilder>();
+            clauseCollectionBuilderMock.Setup(mock => mock.AddLiteral(It.IsAny<Literal>()));
+
+            var clauseMakerFsm = Mock.Of<IClauseMakerFSM>();
+            var parentState = new Mock<ClauseMakerState>(clauseMakerFsm, clauseCollectionBuilderMock.Object).Object;
+
+            var literal = new Literal("test");
+            var testedState = new LiteralLevelClauseMakerState(
+                clauseMakerFsm, parentState, clauseCollectionBuilderMock.Object, 1
+            );
+
+            testedState.ProcessLiteral(literal);
+
+            clauseCollectionBuilderMock.Verify(
+                mock => mock.AddLiteral(It.Is<Literal>(l => l.Equals(literal))),
+                Times.Once
+            );
         }
 
         [TestMethod]

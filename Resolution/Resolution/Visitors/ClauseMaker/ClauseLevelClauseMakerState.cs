@@ -22,28 +22,34 @@ namespace Resolution.Visitors.ClauseMaker
 
         public override void ProcessComplexSentence(ComplexSentence sentence)
         {
-            CheckClauseLimit();
-
             if (sentence.Connective != Connective.OR)
                 throw new ArgumentException("Invalid sentence: expected alternative");
 
             processedClauses++;
-            fsm.State = new LiteralLevelClauseMakerState(fsm, this, clauseCollectionBuilder, sentence.Sentences.Length);
+            if (processedClauses > clauseCount)
+            {
+                fsm.State = parentState;
+            }
+            else
+            {
+                fsm.State = new LiteralLevelClauseMakerState(
+                    fsm, this, clauseCollectionBuilder, sentence.Sentences.Length
+                );
+            }
         }
 
+        // a case with a single literal
         public override void ProcessLiteral(Literal literal)
         {
-            // a case with a single literal
-            CheckClauseLimit();
+            if (processedClauses >= clauseCount)
+            {
+                fsm.State = parentState;
+                return;
+            }
+
             clauseCollectionBuilder.AddClause(new Clause(new[] { literal }));
             processedClauses++;
             fsm.State = this;
-        }
-
-        private void CheckClauseLimit()
-        {
-            if (processedClauses >= clauseCount)
-                fsm.State = parentState;
         }
     }
 }

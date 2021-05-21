@@ -41,6 +41,26 @@ namespace Resolution.Tests.VisitorsTests.ClauseMaker
         [TestMethod]
         public void ProcessLiteral_AddsLiteralToClauseCollectionBuilder_WhenClauseLimitNotReached()
         {
+            var clauseCollectionBuilderMock = new Mock<ClauseCollectionBuilder>();
+            clauseCollectionBuilderMock.Setup(mock => mock.AddClause(It.IsAny<Clause>()));
+
+            var clauseMakerFsm = Mock.Of<IClauseMakerFSM>();
+            var parentState = new Mock<ClauseMakerState>(clauseMakerFsm, clauseCollectionBuilderMock.Object).Object;
+
+            var literal = new Literal("test");
+            var testedState = new ClauseLevelClauseMakerState(
+                clauseMakerFsm, parentState, clauseCollectionBuilderMock.Object, 1
+            );
+
+            testedState.ProcessLiteral(literal);
+            clauseCollectionBuilderMock.Verify(
+                mock => mock.AddClause(It.Is<Clause>(c =>
+                    c.PositiveLiterals.Count == 1 &&
+                    c.NegativeLiterals.Count == 0 &&
+                    c.PositiveLiterals[0].Equals(literal)
+                )),
+                Times.Once
+            );
         }
 
         [TestMethod]
@@ -65,7 +85,7 @@ namespace Resolution.Tests.VisitorsTests.ClauseMaker
             var parentState = new Mock<ClauseMakerState>(clauseMakerFsm, clauseCollectionBuilder).Object;
 
             var complexSentence = new ComplexSentence(Connective.OR, new Literal("p"), new Literal("q"));
-            var testedState = new ClauseLevelClauseMakerState(clauseMakerFsm, parentState, clauseCollectionBuilder, 0);
+            var testedState = new ClauseLevelClauseMakerState(clauseMakerFsm, parentState, clauseCollectionBuilder, 1);
 
             testedState.ProcessComplexSentence(complexSentence);
             Assert.IsInstanceOfType(clauseMakerFsm.State, typeof(LiteralLevelClauseMakerState));
