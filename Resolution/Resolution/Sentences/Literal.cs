@@ -4,9 +4,10 @@ namespace Resolution.Sentences
 {
     public class Literal : Sentence
     {
-        public Literal(string symbol)
+        public Literal(string symbol, bool negated = false)
         {
             Symbol = symbol;
+            Negated = negated;
         }
 
         public string Symbol { get; }

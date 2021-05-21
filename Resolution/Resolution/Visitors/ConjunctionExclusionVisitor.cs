@@ -23,6 +23,7 @@ namespace Resolution.Visitors
         {
             // ensure that before parsing new sentence the state is 'child'
             State = new ChildConjunctionExclusionState(this);
+            unnestingVisitor.Visit(sentence);
 
             while (conjunctionDetector.DetectConjunction(sentence))
             {
