@@ -14,7 +14,7 @@ namespace Resolution.Parser.Decorators
         {
         }
 
-        public override string Decorate(string text)
+        protected override string Decorate(string text)
         {
             // maybve add some chain in here
             if (!text.StartsWith(DiseasesDeclarationSetDecorator.DiseasesFileDefinition))

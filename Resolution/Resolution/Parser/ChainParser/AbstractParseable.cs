@@ -1,6 +1,6 @@
 ﻿namespace Resolution.Parser.ChainParser
 {
-    abstract class AbstractParseable : IParseable
+    public abstract class AbstractParseable : IParseable
     {
         private IParseable next { get; set; } = null;
         public IParseable Next(IParseable next)

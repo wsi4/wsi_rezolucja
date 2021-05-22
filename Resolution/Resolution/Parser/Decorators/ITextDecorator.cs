@@ -1,6 +1,6 @@
 ﻿namespace Resolution.Parser.Decorators
 {
-    internal interface ITextDecorator
+    public interface ITextDecorator
     {
         string GetText();
     }

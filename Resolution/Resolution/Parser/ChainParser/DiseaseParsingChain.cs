@@ -2,13 +2,21 @@
 
 namespace Resolution.Parser.ChainParser
 {
-    internal static class DiseaseParsingChain
+    public static class DiseaseParsingChain
     {
         private static IParseable chain { get; set; } = null;
 
         private static void CreateChain()
         {
             DiseaseParsingChain.chain = new AndParser();
+
+            chain.Next(new OrParser())
+                .Next(new ImpParser())
+                .Next(new BiconParser())
+                .Next(new NotParser())
+                .Next(new IdentifierParser())
+                .Next(new RecurSentenceParser())
+                .Next(new EndParser());
         }
 
         public static IParseable GetChain()

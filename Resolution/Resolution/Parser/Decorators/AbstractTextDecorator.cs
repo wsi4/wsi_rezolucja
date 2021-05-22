@@ -1,6 +1,6 @@
 ﻿namespace Resolution.Parser.Decorators
 {
-    internal abstract class AbstractTextDecorator : ITextDecorator
+    public abstract class AbstractTextDecorator : ITextDecorator
     {
         private ITextDecorator component;
 

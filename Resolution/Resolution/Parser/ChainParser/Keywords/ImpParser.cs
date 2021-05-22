@@ -2,7 +2,7 @@
 
 namespace Resolution.Parser.ChainParser.Keywords
 {
-    internal class ImpParser : AbstractParseable
+    public class ImpParser : AbstractParseable
     {
         protected override ParsedValue CheckRecognision(string text)
         {

@@ -6,7 +6,7 @@
         {
         }
 
-        public override string Decorate(string text)
+        protected override string Decorate(string text)
         {
             return text.Replace('\n', ' ').Replace('\r', ' ').Trim();
         }

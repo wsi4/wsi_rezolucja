@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Resolution.Parser.ChainParser
 {
-    enum RecognisedValue
+    public enum RecognisedValue
     {
         NotRecognised,
         Keyword,
@@ -14,7 +14,7 @@ namespace Resolution.Parser.ChainParser
         EndOfSentence
     }
 
-    internal class ParsedValue
+    public class ParsedValue
     {
         public RecognisedValue Recognised { get; set; } = RecognisedValue.NotRecognised;
         public Sentences.Sentence Identifier { get; set; } = null;
@@ -26,7 +26,7 @@ namespace Resolution.Parser.ChainParser
         }
     }
 
-    interface IParseable
+    public interface IParseable
     {
         IParseable Next(IParseable next);
         ParsedValue Recognise(string text);

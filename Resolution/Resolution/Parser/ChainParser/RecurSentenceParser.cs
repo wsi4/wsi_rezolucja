@@ -1,11 +1,6 @@
 ﻿using Resolution.Parser.Exceptions;
-using Resolution.Parser;
 using Resolution.Sentences;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Resolution.Parser.ChainParser
 {
@@ -27,7 +22,11 @@ namespace Resolution.Parser.ChainParser
                 {
                     unclosed--;
                     if (unclosed == 0)
+                    {
                         indexOfClosed = i;
+                        break;
+                    }
+
                 }
             }
 
@@ -62,19 +61,27 @@ namespace Resolution.Parser.ChainParser
             tmpList.Add(parsedText[0].Identifier);
 
             Connective currentConnective = null;
-            for (int i = 2; i < parsedText.Count; i++)
+            int lastConnective = -1;
+            int lastLiteral = 0;
+            for (int i = 1; i < parsedText.Count; i++)
             {
                 var tmpFor = parsedText[i];
                 if (tmpFor.Recognised == RecognisedValue.Keyword &&
                     currentConnective == null)
                 {
                     currentConnective = tmpFor.Connective;
+                    if (lastConnective == i - 1)
+                        throw new ParsingException("there cannot be 2 connectives in a row");
+                    lastConnective = i;
                     continue;
                 }
 
                 if (tmpFor.Recognised == RecognisedValue.Keyword &&
                     currentConnective != tmpFor.Connective)
                 {
+                    if (lastConnective == i - 1)
+                        throw new ParsingException("there cannot be 2 connectives in a row");
+                    lastConnective = i;
                     if (tmpList.Count < 2)
                         throw new ParsingException("There cannot be 2 non-unary keywords after each other");
                     ComplexSentence complexSentence = new ComplexSentence(currentConnective, tmpList.ToArray());
@@ -85,7 +92,16 @@ namespace Resolution.Parser.ChainParser
                 }
 
                 if (tmpFor.Recognised == RecognisedValue.SentenceTyped)
-                    tmpList.Add(tmpList[i]);
+                {
+                    if (lastLiteral == i - 1)
+                        throw new ParsingException("there cannot be 2 literals in a row");
+                    lastLiteral = i;
+                    tmpList.Add(parsedText[i].Identifier);
+                }
+                if(i == parsedText.Count-1 &&
+                    parsedText[i].Recognised == RecognisedValue.Keyword)
+                    throw new ParsingException("sentence cannot end with connective");
+
             }
 
             if (tmpList.Count >= 2)
@@ -106,7 +122,7 @@ namespace Resolution.Parser.ChainParser
             int? closingBrackets = this.PairsClosure(text);
             if (closingBrackets is null)
                 throw new ParsingException("recursive sentences do not close up");
-            string subSentence = text.Substring(1, closingBrackets.Value-2);
+            string subSentence = text.Substring(1, closingBrackets.Value-1);
             return new ParsedValue(text.Substring(closingBrackets.Value + 1))
             {
                 Recognised = RecognisedValue.SentenceTyped,

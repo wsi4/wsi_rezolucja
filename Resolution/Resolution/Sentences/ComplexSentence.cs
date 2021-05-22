@@ -43,24 +43,17 @@ namespace Resolution.Sentences
                 return false;
             }
 
-            if (Connective == Connective.IMPLICATION)
-            {
-                return Negated == x.Negated && x.Sentences.Equals(Sentences);
-            }
-            else
-            {
-                var asList = new List<Sentence>(x.Sentences);
 
-                foreach (var element in Sentences)
+            foreach (var element in Sentences)
+            {
+                if (!x.Sentences.Contains(element))
                 {
-                    if (!asList.Contains(element))
-                    {
-                        return false;
-                    }
+                    return false;
                 }
-
-                return Negated == x.Negated;
             }
+
+            return Negated == x.Negated;
+
         }
 
         public override string ToString()

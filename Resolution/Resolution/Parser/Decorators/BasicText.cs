@@ -2,7 +2,7 @@
 
 namespace Resolution.Parser.Decorators
 {
-    internal class BasicText : ITextDecorator
+    public class BasicText : ITextDecorator
     {
         private string Text { get; set; }
         public BasicText(string text)

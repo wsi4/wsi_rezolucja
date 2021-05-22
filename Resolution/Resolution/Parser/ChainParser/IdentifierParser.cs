@@ -3,7 +3,7 @@ using Resolution.Sentences;
 
 namespace Resolution.Parser.ChainParser.Keywords
 {
-    internal class IdentifierParser : AbstractParseable
+    public class IdentifierParser : AbstractParseable
     {
         protected override ParsedValue CheckRecognision(string text)
         {

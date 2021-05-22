@@ -2,7 +2,7 @@
 
 namespace Resolution.Parser.ChainParser.Keywords
 {
-    internal class BiconParser : AbstractParseable
+    public class BiconParser : AbstractParseable
     {
         protected override ParsedValue CheckRecognision(string text)
         {

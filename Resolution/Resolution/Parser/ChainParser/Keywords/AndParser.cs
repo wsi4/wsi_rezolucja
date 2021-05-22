@@ -2,7 +2,7 @@
 
 namespace Resolution.Parser.ChainParser.Keywords
 {
-    internal class AndParser : AbstractParseable
+    public class AndParser : AbstractParseable
     {
         protected override ParsedValue CheckRecognision(string text)
         {
