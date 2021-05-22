@@ -1,9 +1,4 @@
 ﻿using Resolution.Parser.Exceptions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Resolution.Parser.Decorators
 {
@@ -23,8 +18,7 @@ namespace Resolution.Parser.Decorators
             var tmp = text.Substring(FileReader.DiseasesFileDefinition.Length).Trim();
             if(!(tmp.StartsWith("{") && tmp.EndsWith("}")))
                 throw new ParsingException("Text do not contains body definition {}");
-            
-            return tmp.Remove(tmp.Length - 1).Remove(0).Trim();
+            return tmp.Remove(tmp.Length - 1).Substring(1).Trim();
         }
     }
 }

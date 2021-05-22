@@ -1,11 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Resolution.Parser;
-using Resolution.Sentences;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Resolution.Tests.ParserTests
 {
@@ -15,7 +9,7 @@ namespace Resolution.Tests.ParserTests
         [TestMethod]
         public void TestLiteralSymbol()
         {
-            FileReader.ReadFileX();
+            var tmp = FileReader.ReadFileX();
             Assert.IsTrue(true);
         }
 
