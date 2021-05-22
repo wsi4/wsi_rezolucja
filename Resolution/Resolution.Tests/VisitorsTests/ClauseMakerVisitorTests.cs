@@ -16,7 +16,7 @@ namespace Resolution.Tests.VisitorsTests
 
             Assert.AreEqual(1, clauseCollection.Count);
             Assert.AreEqual(1, clauseCollection[0].PositiveLiterals.Count);
-            Assert.AreEqual(sentence, clauseCollection[0].PositiveLiterals[0]);
+            Assert.IsTrue(clauseCollection[0].PositiveLiterals.Contains(sentence));
         }
 
         [TestMethod]
@@ -32,11 +32,11 @@ namespace Resolution.Tests.VisitorsTests
 
             Assert.AreEqual(1, clauseCollection.Count);
             Assert.AreEqual(2, clauseCollection[0].PositiveLiterals.Count);
-            Assert.AreEqual(p, clauseCollection[0].PositiveLiterals[0]);
-            Assert.AreEqual(q, clauseCollection[0].PositiveLiterals[1]);
+            Assert.IsTrue(clauseCollection[0].PositiveLiterals.Contains(p));
+            Assert.IsTrue(clauseCollection[0].PositiveLiterals.Contains(q));
 
             Assert.AreEqual(1, clauseCollection[0].NegativeLiterals.Count);
-            Assert.AreEqual(r, clauseCollection[0].NegativeLiterals[0]);
+            Assert.IsTrue(clauseCollection[0].NegativeLiterals.Contains(r));
         }
 
         [TestMethod]
@@ -59,15 +59,15 @@ namespace Resolution.Tests.VisitorsTests
             Assert.AreEqual(2, clauseCollection.Count);
 
             Assert.AreEqual(1, clauseCollection[0].PositiveLiterals.Count);
-            Assert.AreEqual(p, clauseCollection[0].PositiveLiterals[0]);
+            Assert.IsTrue(clauseCollection[0].PositiveLiterals.Contains(p));
             Assert.AreEqual(2, clauseCollection[0].NegativeLiterals.Count);
-            Assert.AreEqual(q, clauseCollection[0].NegativeLiterals[0]);
-            Assert.AreEqual(r, clauseCollection[0].NegativeLiterals[1]);
+            Assert.IsTrue(clauseCollection[0].NegativeLiterals.Contains(q));
+            Assert.IsTrue(clauseCollection[0].NegativeLiterals.Contains(r));
 
             Assert.AreEqual(1, clauseCollection[1].PositiveLiterals.Count);
-            Assert.AreEqual(s, clauseCollection[1].PositiveLiterals[0]);
+            Assert.IsTrue(clauseCollection[1].PositiveLiterals.Contains(s));
             Assert.AreEqual(1, clauseCollection[1].NegativeLiterals.Count);
-            Assert.AreEqual(t, clauseCollection[1].NegativeLiterals[0]);
+            Assert.IsTrue(clauseCollection[1].NegativeLiterals.Contains(t));
         }
     }
 }
