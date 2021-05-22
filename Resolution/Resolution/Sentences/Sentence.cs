@@ -20,9 +20,6 @@ namespace Resolution.Sentences
             return obj is Sentence && Equals(obj as Sentence);
         }
 
-        public override int GetHashCode()
-        {
-            return base.GetHashCode();
-        }
+        public abstract override int GetHashCode();
     }
 }

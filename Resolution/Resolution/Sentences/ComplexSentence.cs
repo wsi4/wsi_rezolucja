@@ -1,4 +1,5 @@
 ﻿using Resolution.Visitors;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -48,12 +49,10 @@ namespace Resolution.Sentences
                 return Negated == x.Negated && x.Sentences.Equals(Sentences);
             }
             else
-            {
-                var asList = new List<Sentence>(x.Sentences);
-
+            {   
                 foreach (var element in Sentences)
                 {
-                    if (!asList.Contains(element))
+                    if (!x.Sentences.Contains(element))
                     {
                         return false;
                     }
@@ -61,6 +60,17 @@ namespace Resolution.Sentences
 
                 return Negated == x.Negated;
             }
+        }
+
+        public override int GetHashCode()
+        {
+            var hash = new HashCode();
+            hash.Add(Connective);
+            foreach (var sentence in Sentences)
+            {
+                hash.Add(sentence);
+            }
+            return hash.ToHashCode();
         }
 
         public override string ToString()
