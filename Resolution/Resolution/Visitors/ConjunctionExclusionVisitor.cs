@@ -16,7 +16,7 @@ namespace Resolution.Visitors
         private readonly ConjunctionDetectionVisitor conjunctionDetector = new ConjunctionDetectionVisitor();
         private readonly UnnestingVisitor unnestingVisitor = new UnnestingVisitor();
 
-        public ConjunctionExclusionState State { private get; set; }
+        public ConjunctionExclusionState State { get; set; }
 
         // this method is only called by the client;
         public override void Visit(Sentence sentence)

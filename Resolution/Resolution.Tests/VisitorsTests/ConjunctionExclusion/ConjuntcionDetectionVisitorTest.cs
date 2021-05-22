@@ -2,7 +2,7 @@
 using Resolution.Sentences;
 using Resolution.Visitors.ConjunctionExclusion;
 
-namespace Resolution.Tests.VisitorsTests
+namespace Resolution.Tests.VisitorsTests.ConjunctionExclusion
 {
     [TestClass]
     public class ConjuntcionDetectionVisitorTest
