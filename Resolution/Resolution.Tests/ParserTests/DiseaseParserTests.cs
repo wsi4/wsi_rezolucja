@@ -17,7 +17,6 @@ namespace Resolution.Tests.ParserTests
         public void BasicSentence()
         {
             string text = "  ( test);";
-
             Sentence expected_result = new Literal("test");
             Sentence result = DiseaseParser.Parse(text);
             Assert.AreEqual(expected_result, result);
