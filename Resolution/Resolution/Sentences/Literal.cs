@@ -1,4 +1,5 @@
 ﻿using Resolution.Visitors;
+using System;
 
 namespace Resolution.Sentences
 {
@@ -37,6 +38,11 @@ namespace Resolution.Sentences
             }
 
             return x.Symbol == Symbol && x.Negated == Negated;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Symbol, Negated);
         }
 
         public override string ToString()

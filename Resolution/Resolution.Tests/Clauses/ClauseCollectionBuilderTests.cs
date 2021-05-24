@@ -27,10 +27,10 @@ namespace Resolution.Tests.Clauses
             Assert.AreEqual(clause, clauseCollection[0]);
 
             Assert.AreEqual(1, clauseCollection[1].PositiveLiterals.Count);
-            Assert.AreEqual(literal2, clauseCollection[1].PositiveLiterals[0]);
+            Assert.IsTrue(clauseCollection[1].PositiveLiterals.Contains(literal2));
 
             Assert.AreEqual(1, clauseCollection[1].NegativeLiterals.Count);
-            Assert.AreEqual(literal1, clauseCollection[1].NegativeLiterals[0]);
+            Assert.IsTrue(clauseCollection[1].NegativeLiterals.Contains(literal1));
         }
     }
 }

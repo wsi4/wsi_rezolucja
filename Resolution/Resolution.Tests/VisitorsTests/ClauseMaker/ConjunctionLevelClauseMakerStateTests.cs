@@ -25,7 +25,7 @@ namespace Resolution.Tests.VisitorsTests.ClauseMaker
                 mock => mock.AddClause(It.Is<Clause>(c =>
                     c.PositiveLiterals.Count == 1 &&
                     c.NegativeLiterals.Count == 0 &&
-                    c.PositiveLiterals[0].Equals(literal)
+                    c.PositiveLiterals.Contains(literal)
                 )),
                 Times.Once
             );
