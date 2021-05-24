@@ -1,4 +1,5 @@
 ﻿using Resolution.Visitors;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -52,6 +53,17 @@ namespace Resolution.Sentences
             }
 
             return Negated == x.Negated;
+        }
+
+        public override int GetHashCode()
+        {
+            var hash = new HashCode();
+            hash.Add(Connective);
+            foreach (var sentence in Sentences)
+            {
+                hash.Add(sentence);
+            }
+            return hash.ToHashCode();
         }
 
         public override string ToString()

@@ -27,7 +27,7 @@ namespace Resolution.Sentences
         }
 
         public bool Equals(Connective other) => this == other;
-        public override int GetHashCode() => base.GetHashCode();
+        public override int GetHashCode() => HashCode.Combine(Precedence, Symbol);
         public static bool operator !=(Connective first, Connective second) => !(first == second);
 
         public override bool Equals(object obj)

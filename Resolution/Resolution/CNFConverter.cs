@@ -1,27 +1,24 @@
 ﻿using Resolution.Clauses;
 using Resolution.Sentences;
 using Resolution.Visitors;
-using System;
 using System.Collections.Generic;
 
 namespace Resolution
 {
-    class CNFConverter
+    public class CNFConverter
     {
         public List<Clause> ConvertToCNF(Sentence sentence)
         {
             var removeImpl = new ImplicationRemovalVisitor();
+            var negationInwards = new MoveNegationInwardsVisitor();
             var conjunctionExcl = new ConjunctionExclusionVisitor();
+            var clauseMaker = new ClauseMakerVisitor();
 
             removeImpl.Visit(sentence);
+            negationInwards.Visit(sentence);
             conjunctionExcl.Visit(sentence);
 
-            return ConvertSentenceToClauses(sentence);
-        }
-
-        private List<Clause> ConvertSentenceToClauses(Sentence s)
-        {
-            throw new NotImplementedException();
+            return clauseMaker.CreateClauses(sentence);
         }
     }
 }

@@ -1,12 +1,14 @@
 ﻿using Resolution.Visitors;
+using System;
 
 namespace Resolution.Sentences
 {
     public class Literal : Sentence
     {
-        public Literal(string symbol)
+        public Literal(string symbol, bool negated = false)
         {
             Symbol = symbol;
+            Negated = negated;
         }
 
         public string Symbol { get; }
@@ -36,6 +38,11 @@ namespace Resolution.Sentences
             }
 
             return x.Symbol == Symbol && x.Negated == Negated;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Symbol, Negated);
         }
 
         public override string ToString()
