@@ -2,6 +2,6 @@
 {
     public interface ITextDecorator
     {
-        string GetText();
+        public string Text { get; }
     }
 }

@@ -15,7 +15,7 @@ namespace Resolution.Parser.ChainParser
                 .Next(new BiconParser())
                 .Next(new NotParser())
                 .Next(new IdentifierParser())
-                .Next(new RecurSentenceParser())
+                .Next(new RecursiveSentenceParser())
                 .Next(new EndParser());
         }
 

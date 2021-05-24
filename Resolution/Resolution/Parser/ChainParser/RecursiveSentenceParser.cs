@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Resolution.Parser.ChainParser
 {
-    class RecurSentenceParser : AbstractParseable, ISentenceParseable
+    class RecursiveSentenceParser : AbstractParseable, ISentenceParseable
     {
         private char start = '<';
         private char end = '>';
@@ -129,9 +129,5 @@ namespace Resolution.Parser.ChainParser
                 Identifier = this.ParseSentence(subSentence + ";")
             };
         }
-
-
-
     }
-    
 }

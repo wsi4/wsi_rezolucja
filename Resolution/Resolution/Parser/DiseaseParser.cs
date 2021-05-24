@@ -10,7 +10,7 @@ namespace Resolution.Parser
     {
         public static Sentence Parse(string text)
         {
-            ISentenceParseable mainParser = new RecurSentenceParser();
+            ISentenceParseable mainParser = new RecursiveSentenceParser();
             return mainParser.ParseSentence(text);
         }
 

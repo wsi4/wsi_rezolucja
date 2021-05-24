@@ -5,7 +5,7 @@ using Resolution.Sentences;
 namespace Resolution.Tests.ParserTests.KeywordsTests
 {
     [TestClass]
-    public class ConnecitvesTests
+    public class ConnectivesTests
     {
         [TestMethod]
         public void OrTestTypeAndValue()

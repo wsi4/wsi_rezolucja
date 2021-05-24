@@ -43,7 +43,6 @@ namespace Resolution.Sentences
                 return false;
             }
 
-
             foreach (var element in Sentences)
             {
                 if (!x.Sentences.Contains(element))
@@ -53,7 +52,6 @@ namespace Resolution.Sentences
             }
 
             return Negated == x.Negated;
-
         }
 
         public override string ToString()

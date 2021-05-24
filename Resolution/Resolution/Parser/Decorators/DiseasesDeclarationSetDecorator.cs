@@ -11,7 +11,6 @@ namespace Resolution.Parser.Decorators
 
         protected override string Decorate(string text)
         {
-            // maybve add some chain in here
             if (!text.StartsWith(DiseasesDeclarationSetDecorator.DiseasesFileDefinition))
                 throw new ParsingException("Text do not starts with proper keyword" + DiseasesFileDefinition);
             

@@ -15,8 +15,7 @@ namespace Resolution.Parser
                 ITextDecorator decorator = new DiseasesDeclarationSetDecorator(
                     new EndlinesDecorator(
                     new BasicText(file.ReadToEnd())));
-                string tmp = decorator.GetText();
-                return DiseaseParser.SetParser(decorator.GetText());
+                return DiseaseParser.SetParser(decorator.Text);
             }
         }
     }
