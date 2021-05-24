@@ -2,6 +2,6 @@
 {
     public interface IConjunctionExclusionFSM
     {
-        ConjunctionExclusionState State { set; }
+        ConjunctionExclusionState State { get; set; }
     }
 }
