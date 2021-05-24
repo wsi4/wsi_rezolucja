@@ -8,7 +8,7 @@ namespace Resolution.Tests.AutomatedReasoningTests
     public class ResolutionTests
     {
         [TestMethod]
-        public void TestGoodExample()
+        public void UserHasExactSymptomsTest()
         {
             Sentence headacheDiagnosis = new ComplexSentence(Connective.OR, new Literal("flu"), new Literal("chronic_fatigue"));
             Sentence soreThroatDiagnosis = new ComplexSentence(Connective.OR, new Literal("flu"), new Literal("chronic_fatigue"));
@@ -41,7 +41,7 @@ namespace Resolution.Tests.AutomatedReasoningTests
         }
 
         [TestMethod]
-        public void TestBadExample()
+        public void UserHasAdditionalSymptomsTest()
         {
             Sentence headacheDiagnosis = new ComplexSentence(Connective.OR, new Literal("flu"), new Literal("chronic_fatigue"));
             Sentence soreThroatDiagnosis = new ComplexSentence(Connective.OR, new Literal("flu"), new Literal("chronic_fatigue"));

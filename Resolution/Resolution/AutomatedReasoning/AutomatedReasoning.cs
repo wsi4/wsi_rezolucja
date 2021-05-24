@@ -1,18 +1,11 @@
 ﻿using Resolution.Clauses;
 using Resolution.Sentences;
+using Resolution.Utilities;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace Resolution
 {
-    public static class SetExtensions
-    {
-        public static bool ContainsAll<T>(this ISet<T> set, IEnumerable<T> enumerable)
-        {
-            return enumerable.All(e => set.Contains(e));
-        }
-    }
-
     public static class AutomatedReasoning
     {
         public static bool Resolution(IEnumerable<Sentence> kb, Sentence alpha)
@@ -23,16 +16,18 @@ namespace Resolution
             alphaClone.Negate();
 
             var clausesSet = kb.Append(alphaClone)
-                .Aggregate(Enumerable.Empty<Clause>(), (acc, current) => acc.Concat(cNFConverter.ConvertToCNF(current))).ToHashSet();
+                .Aggregate(Enumerable.Empty<Clause>(), 
+                    (acc, current) => acc.Concat(cNFConverter.ConvertToCNF(current))).ToHashSet();
             var newClauses = new List<Clause>();
 
-            do
+            while (true)
             {
                 var clausesList = clausesSet.ToList();
 
                 for (int i = 0; i < clausesList.Count; i++)
                 {
-                    var ci = clausesList[i];
+                    Clause ci = clausesList[i];
+
                     for (int j = i + 1; j < clausesList.Count; j++)
                     {
                         Clause cj = clausesList[j];
@@ -54,7 +49,7 @@ namespace Resolution
 
                 clausesSet.UnionWith(newClauses);
 
-            } while (true);
+            }
         }
 
         private static ISet<Clause> Resolve(Clause ci, Clause cj)
