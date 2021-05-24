@@ -44,22 +44,15 @@ namespace Resolution.Sentences
                 return false;
             }
 
-            if (Connective == Connective.IMPLICATION)
+            foreach (var element in Sentences)
             {
-                return Negated == x.Negated && x.Sentences.Equals(Sentences);
-            }
-            else
-            {   
-                foreach (var element in Sentences)
+                if (!x.Sentences.Contains(element))
                 {
-                    if (!x.Sentences.Contains(element))
-                    {
-                        return false;
-                    }
+                    return false;
                 }
-
-                return Negated == x.Negated;
             }
+
+            return Negated == x.Negated;
         }
 
         public override int GetHashCode()
