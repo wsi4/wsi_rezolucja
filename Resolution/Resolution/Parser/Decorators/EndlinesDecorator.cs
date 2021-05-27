@@ -8,7 +8,7 @@
 
         protected override string Decorate(string text)
         {
-            return text.Replace('\n', ' ').Replace('\r', ' ').Trim();
+            return text.Replace('\n', ' ').Replace('\r', ' ').Replace('\t', ' ').Trim();
         }
     }
 }

@@ -2,11 +2,6 @@
 using Resolution.Parser;
 using Resolution.Parser.Exceptions;
 using Resolution.Sentences;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Resolution.Tests.ParserTests
 {

@@ -1,0 +1,7 @@
+Choroby
+{
+    (headache) imp <(flu) or (chronic_fatigue)>;
+    (sore_throat) imp <(flu) or (chronic_fatigue)>;
+    (muscle_pain) imp (flu);
+    (muscle_pain) imp not(chronic_fatigue);
+}

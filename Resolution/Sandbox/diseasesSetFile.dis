@@ -1,0 +1,6 @@
+Choroby
+{
+    <(ból gardła) and (gorączka) and not(biegunka) imp (angina)> and
+      <(gorączka) and not(ból gardła) and <(biegunka) or (ból głowy)> imp (przemęczenie)> and
+      <(ból gardła) and (gorączka)> and not(angina);
+}
