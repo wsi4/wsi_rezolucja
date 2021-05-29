@@ -1,5 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using Resolution;
+using Resolution.Parser;
 using Resolution.Sentences;
 
 namespace Sandbox
@@ -32,12 +36,49 @@ namespace Sandbox
             );
 
             Console.WriteLine(sentence);
+            string file1 = "./../../../diseasesSetFile.dis";
+            Sentence usedSentence = sentence;
+            var sentences = FileReader.ReadFileX(file1);
+            foreach (Sentence sentence1 in sentences)
+            {
+                Console.WriteLine(sentence1.ToString());
+                Console.WriteLine("Equals: " + sentence.Equals(sentence1).ToString());
+                usedSentence = sentence1;
+            }
+
 
             var converter = new CNFConverter();
-            var clauses = converter.ConvertToCNF(sentence);
+            var clauses = converter.ConvertToCNF(usedSentence);
 
             Console.WriteLine("Clauses:");
             clauses.ForEach(Console.WriteLine);
+
+            Example("./../../../exampleSet.dis");
+        }
+
+        private static void Example(string exampleFileSet)
+        {
+            Console.WriteLine("------------------------EXAMPLE---------------------------------------");
+            // symptoms
+            Sentence headache = new Literal("headache");
+            Sentence soreThroat = new Literal("sore_throat");
+            Sentence musclePain = new Literal("muscle_pain");
+
+            IEnumerable<Sentence> sentences = FileReader.ReadFileX(exampleFileSet);
+            List<Sentence> kb = sentences.ToList();
+            kb.Add(headache);
+            kb.Add(soreThroat);
+            kb.Add(musclePain);
+
+            var disease = new Literal("flu");
+            if (AutomatedReasoning.Resolution(kb, disease))
+            {
+                Console.WriteLine("Diagnosis: " + disease);
+            }
+
+            Console.WriteLine("------------------------------------------------------------------");
+            
+
         }
     }
 }
