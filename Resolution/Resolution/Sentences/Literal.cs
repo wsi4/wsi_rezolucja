@@ -30,6 +30,11 @@ namespace Resolution.Sentences
             return literal;
         }
 
+        public override bool Contains(string l)
+        {
+            return Symbol.Equals(l);
+        }
+
         public override bool Equals(Sentence other)
         {
             if (other is not Literal x)
