@@ -1,11 +1,23 @@
 # Resolution
 
-## Parsing the logic input language
-Class library includes a parser for a simple logical language. To instantiate the given knowledge base, user needs to invoke
-```FileReader.ReadFileX(absoluteFilePath)```. The method returns
-```IEnumerable<Sentence>```. In case of error, the method throws a ```ParsingException```.
+## Usage
 
-### Language definition
+The project is a console application that takes two arguments. The first one is the path to the Diseases description file, while the second one is the path to the patients description file. Both files are described more thoroughly in below sections.
+
+Sample invocation of the program:
+```
+> Launcher.exe .\exampleSet.dis .\patients.pat
+```
+
+## Patients description file
+
+The file containing the set of patients and their symptoms needs to contain at least one line defined according to the schema below:
+```
+<name> | <symptom_1>, <symptom_2> | <not_symptom_1>, <not_symptom_2> | <disease>
+```
+where `<name>` is the name of the patient, `<symptom_1>, <symptom_2>` is the comma-delimited list of symtoms the patient exhibits, `<not_symptom_1>, <not_symptom_2>` is the list of symptoms the patient does NOT exhibit, and `<disease>` is the diagnosis that should be verified. Every section is delimited with the pipe (`|`) symbol. Sample file, called `patients.pat` can be closer examined in the Launcher project.
+
+## Disease description file
 Every file with set of diseases needs to be defined according to the schema below:
 ```
 Choroby
@@ -26,7 +38,8 @@ Expressions adhere to the following rules:
 5. expressions cannot start or end with a non-unary operator,
 6. sentences can be nested using brackets, e.g.: `<<[sentence] [connective] [sentence]> [connective] [sentence]>`.
 
-## Grammar of language
+Sample file, called `exampleSet.dis` can be closer examined in the Launcher project.
+### Grammar of the disease description
 ```
 G = (V,T,P, START)
 V = {START, EXPS, EXP, LIT, CONN, SUB}
@@ -43,7 +56,7 @@ LIT => ([string]) | not([string])
 CONN => and | or | imp | bicon
 ```
 
-## Example
+### Example
 ```
 Choroby
 {
