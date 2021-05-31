@@ -2,7 +2,7 @@
 
 ## Usage
 
-The project is a console application that takes two arguments. The first one is the path to the Diseases description file, while the second one is the paath to the patients description file. Both files are described more thoroughly in below sections.
+The project is a console application that takes two arguments. The first one is the path to the Diseases description file, while the second one is the path to the patients description file. Both files are described more thoroughly in below sections.
 
 Sample invocation of the program:
 ```
@@ -15,7 +15,7 @@ The file containing the set of patients and their symptoms needs to contain at l
 ```
 <name> | <symptom_1>, <symptom_2> | <not_symptom_1>, <not_symptom_2> | <disease>
 ```
-where `<name>` is the name of the patient, `<symptom_1>, <symptom_2>` is the coma-delimited list of symtoms the patient exhibits, `<not_symptom_1>, <not_symptom_2>` is the list of symptoms the patient does NOT exhibit, and `<disease>` is the diagnosis that should be verified. Every section is delimited with the pipe (`|`) symbol. Sample file, called `patients.pat` can be closer examined in the Launcher project.
+where `<name>` is the name of the patient, `<symptom_1>, <symptom_2>` is the comma-delimited list of symtoms the patient exhibits, `<not_symptom_1>, <not_symptom_2>` is the list of symptoms the patient does NOT exhibit, and `<disease>` is the diagnosis that should be verified. Every section is delimited with the pipe (`|`) symbol. Sample file, called `patients.pat` can be closer examined in the Launcher project.
 
 ## Disease description file
 Every file with set of diseases needs to be defined according to the schema below:
