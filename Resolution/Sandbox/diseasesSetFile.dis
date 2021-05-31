@@ -1,6 +1,15 @@
 Choroby
 {
-    <(ból gardła) and (gorączka) and not(biegunka) imp (angina)> and
-      <(gorączka) and not(ból gardła) and <(biegunka) or (ból głowy)> imp (przemęczenie)> and
-      <(ból gardła) and (gorączka)> and not(angina);
+		(ból gardła) 	and 	(gorączka) 		and 	not(biegunka) 	and 	not(ból głowy) 	and		not(brak smaku)		and	not(duszności)	and	not(kaszel)		and	not(katar)		and	not(szybkie bicie serca)	imp 	(angina) ;
+		not(ból gardła) and 	(gorączka)  	and 	<(biegunka) 	or 		(ból głowy)> 	and		not(brak smaku)		and	not(duszności)	and	not(kaszel)		and	not(katar)		and	not(szybkie bicie serca) 	imp 	(przemęczenie);
+		not(ból gardła) and 	(gorączka)  	and 	not(biegunka) 	and 	(ból głowy)		and		not(brak smaku)		and	not(duszności)	and	(kaszel)		and	(katar)			and	not(szybkie bicie serca) 	imp 	(grypa);
+		not(ból gardła) and 	(gorączka)  	and 	not(biegunka) 	and 	(ból głowy)		and 	(brak smaku)		and	(duszności)		and	not(kaszel)		and	not(katar)		and	not(szybkie bicie serca) 	imp 	(covid);
+		not(ból gardła) and 	(gorączka)  	and 	not(biegunka) 	and 	not(ból głowy)	and 	not(brak smaku)		and	(duszności)		and	(kaszel)		and	(katar)			and	not(szybkie bicie serca) 	imp 	(zapalenie płuc);
+		not(ból gardła) and 	(gorączka)  	and 	(biegunka) 		and 	not(ból głowy)	and 	not(brak smaku)		and	not(duszności)	and	not(kaszel)		and	not(katar)		and	not(szybkie bicie serca) 	imp 	(grypa żołądkowa);
+		not(ból gardła) and 	not(gorączka)  	and 	not(biegunka) 	and 	(ból głowy)		and 	(brak smaku)		and	not(duszności)	and	(kaszel)		and	(katar)			and	not(szybkie bicie serca) 	imp 	(zapalenie zatok);
+		(ból gardła) 	and 	not(gorączka)  	and 	not(biegunka) 	and 	not(ból głowy)	and 	not(brak smaku)		and	(duszności)		and	(kaszel)		and	not(katar)		and	not(szybkie bicie serca) 	imp 	(rak płuc);
+		not(ból gardła) and 	not(gorączka)  	and 	not(biegunka) 	and 	not(ból głowy)	and 	not(brak smaku)		and	(duszności)		and	not(kaszel)		and	not(katar)		and	not(szybkie bicie serca) 	imp 	(astma);
+		not(ból gardła) and 	not(gorączka)  	and 	not(biegunka) 	and 	not(ból głowy)	and 	not(brak smaku)		and	(duszności)		and	not(kaszel)		and	not(katar)		and	(szybkie bicie serca) 		imp 	(atak paniki);
+		(ból gardła) 	and 	(gorączka)  	and 	(biegunka) 		and 	(ból głowy)		and 	(brak smaku)		and	(duszności)		and	(kaszel)		and	(katar)			and	(szybkie bicie serca) 		imp 	(hipochondria);
+		
 }
