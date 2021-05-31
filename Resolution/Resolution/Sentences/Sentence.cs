@@ -20,6 +20,8 @@ namespace Resolution.Sentences
             return obj is Sentence && Equals(obj as Sentence);
         }
 
+        public abstract bool Contains(string l);
+
         public abstract override int GetHashCode();
     }
 }

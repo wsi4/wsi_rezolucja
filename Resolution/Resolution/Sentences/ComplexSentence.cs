@@ -37,6 +37,18 @@ namespace Resolution.Sentences
             return ret;
         }
 
+        public override bool Contains(string l)
+        {
+            foreach (var sentence in Sentences)
+            {
+                if(sentence.Contains(l))
+                {
+                    return true; 
+                }
+            }
+            return false;
+        }
+
         public override bool Equals(Sentence other)
         {
             if (other is not ComplexSentence x || Connective != x.Connective)

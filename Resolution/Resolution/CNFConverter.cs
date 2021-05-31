@@ -7,8 +7,9 @@ namespace Resolution
 {
     public class CNFConverter
     {
-        public List<Clause> ConvertToCNF(Sentence sentence)
+        public List<Clause> ConvertToCNF(Sentence s)
         {
+            var sentence = s.Clone() as Sentence;
             var removeImpl = new ImplicationRemovalVisitor();
             var negationInwards = new MoveNegationInwardsVisitor();
             var conjunctionExcl = new ConjunctionExclusionVisitor();

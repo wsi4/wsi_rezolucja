@@ -1,6 +1,7 @@
 ﻿using Resolution.Clauses;
 using Resolution.Sentences;
 using Resolution.Utilities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -8,17 +9,22 @@ namespace Resolution
 {
     public static class AutomatedReasoning
     {
-        public static bool Resolution(IEnumerable<Sentence> kb, Sentence alpha)
+        public static bool Resolution(IEnumerable<Sentence> kb, IEnumerable<Sentence> symptoms, IEnumerable<Sentence> notSymptoms, string disease)
         {
             var cNFConverter = new CNFConverter();
 
-            var alphaClone = (Sentence)alpha.Clone();
-            alphaClone.Negate();
+            kb = kb.Where(a => a.Contains(disease));
+            kb = kb.Concat(symptoms);
+            kb = kb.Concat(notSymptoms);
 
-            var clausesSet = kb.Append(alphaClone)
+            Sentence alpha = new Literal(disease);
+            alpha.Negate();
+
+            var clausesSet = kb.Append(alpha)
                 .Aggregate(Enumerable.Empty<Clause>(), 
                     (acc, current) => acc.Concat(cNFConverter.ConvertToCNF(current))).ToHashSet();
-            var newClauses = new List<Clause>();
+
+            var newClauses = new HashSet<Clause>();
 
             while (true)
             {
@@ -38,7 +44,7 @@ namespace Resolution
                             return true;
                         }
 
-                        newClauses.AddRange(resolvents);
+                        newClauses.UnionWith(resolvents);
                     }
                 }
 
@@ -63,7 +69,7 @@ namespace Resolution
         private static ISet<Clause> ResolvePositiveWithNegative(Clause c1, Clause c2)
         {
             var complementary = c1.PositiveLiterals.Select(p => p.Symbol)
-                .Intersect(c2.NegativeLiterals.Select(p => p.Symbol));
+                .Intersect(c2.NegativeLiterals.Select(p => p.Symbol)).ToList();
             var resolvents = new HashSet<Clause>();
 
             foreach (var complement in complementary)
